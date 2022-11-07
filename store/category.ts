@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import Api from '~/plugin/api'
 
 export const useCategoryStore = defineStore({
   id: 'category',
@@ -6,7 +7,7 @@ export const useCategoryStore = defineStore({
   getters: {},
   actions: {
     createCategory () {
-      return true
+      return Api.createCategory({})
     }
   }
 })

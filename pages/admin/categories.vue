@@ -1,10 +1,24 @@
 <script setup lang="ts">
+import { useCategoryStore } from '~/store/category'
+const categoryStore = useCategoryStore()
 
+const data = ref({
+  title: '',
+  description: '',
+  image: ''
+})
+function createCategory () {
+  categoryStore.createCategory().catch((e) => {
+    return e
+  })
+}
+
+createCategory()
 </script>
 
 <template>
   <div>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Et exercitationem labore laudantium inventore cum unde dignissimos nam, quidem quam atque placeat odit praesentium assumenda, ratione sed veniam quo consequatur. Adipisci.
+    <UiInput v-model="data.title" />
   </div>
 </template>
 

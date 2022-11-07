@@ -13,6 +13,9 @@ export default defineNuxtConfig({
       baseURL: 'https://api.nuxtjs.dev'
     }
   },
+  css: [
+    '~/assets/css/main.scss'
+  ],
 
   /*
    ** Modules - https://nuxtjs.org/docs/2.x/directory-structure/modules
