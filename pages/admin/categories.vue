@@ -2,7 +2,7 @@
 import { useCategoryStore } from '~/store/category'
 const categoryStore = useCategoryStore()
 
-const data = ref({
+const formData = ref({
   title: '',
   description: '',
   image: ''
@@ -19,8 +19,8 @@ createCategory()
 <template>
   <div>
     <h1>Create Category</h1>
-    <UiInput v-model="data.title" placeholder="title of category" />
-    <UiInput v-model="data.title" placeholder="title of category" />
+    <UiInput v-model="formData.title" />
+    <UiButton> Lorem Ipsum </UiButton>
   </div>
 </template>
 
