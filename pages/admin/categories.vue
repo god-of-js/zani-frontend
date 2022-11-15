@@ -18,10 +18,17 @@ createCategory()
 
 <template>
   <div>
-    <UiInput v-model="data.title" />
+    <h1>Create Category</h1>
+    <UiInput v-model="data.title" placeholder="title of category" />
+    <UiInput v-model="data.title" placeholder="title of category" />
   </div>
 </template>
 
-<style scoped>
-
+<style scoped lang="scss">
+h1 {
+  font-size: 16px;
+  font-weight: 900;
+  text-align: center;
+  color: #000;
+}
 </style>

@@ -4,8 +4,6 @@ const slots = useSlots()
 interface Emits {
   (e: 'enter'): void;
   (e: 'update:modelValue', p: string): void;
-  (e: 'clickLeft'): void;
-  (e: 'clickRight'): void;
 }
 const emit = defineEmits<Emits>()
 
@@ -24,7 +22,6 @@ interface Props {
   type?: 'text' | 'password' | 'email' | 'tel';
   isDarkBackground?: boolean;
 }
-
 const props = withDefaults(defineProps<Props>(), {
   autofocus: undefined,
   disabled: undefined,
@@ -48,7 +45,6 @@ function update (e: Event) {
 
 <template>
   <UiField
-    v-slot="{ fieldErrors }"
     :name="props.name"
     :label="props.label"
     :required="props.required"
@@ -61,11 +57,6 @@ function update (e: Event) {
       <input
         :name="props.name"
         class="ui-input"
-        :class="{
-          'is-danger': fieldErrors.length > 0,
-          'has-icon': slots.icon,
-          'has-icon-right': slots.iconRight,
-        }"
         :type="type"
         :placeholder="props.placeholder"
         :value="props.modelValue"
@@ -76,33 +67,19 @@ function update (e: Event) {
         @input="update"
         @keydown.enter="emit('enter')"
       >
-      <div
-        v-if="slots.icon"
-        class="icon-left icon-size-sm"
-        @click="emit('clickLeft')"
-      >
-        <slot name="icon" />
-      </div>
-      <div
-        v-if="slots.iconRight"
-        class="icon-right icon-size-sm"
-        @click="emit('clickRight')"
-      >
-        <slot name="iconRight" />
-      </div>
     </div>
   </UiField>
 </template>
 
 <style lang="scss" scoped>
-.input-layout-container {
-  position: relative;
-}
-
 input.ui-input {
-  padding: px(8) px(16);
+  padding: 4px 16px;
+  margin-bottom: 16px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
   width: 100%;
-  height: 40px;
+  height: 28px;
   align-self: stretch;
   border: 1px solid #000;
   background: #ffffff;

@@ -9,7 +9,6 @@ interface Props {
   hint?: string;
   isDarkBackground?: boolean;
 }
-
 const props = withDefaults(defineProps<Props>(), {
   error: undefined,
   errors: () => [],
