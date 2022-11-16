@@ -8,7 +8,7 @@ const formData = ref({
   image: ''
 })
 function createCategory () {
-  categoryStore.createCategory().catch((e) => {
+  categoryStore.createCategory(formData.value).catch((e) => {
     return e
   })
 }
@@ -19,8 +19,10 @@ createCategory()
 <template>
   <div>
     <h1>Create Category</h1>
-    <UiInput v-model="formData.title" />
-    <UiButton> Lorem Ipsum </UiButton>
+    <form @submit.prevent="createCategory">
+      <UiInput v-model="formData.title" placeholder="title" />
+      <UiButton> Lorem Ipsum </UiButton>
+    </form>
   </div>
 </template>
 

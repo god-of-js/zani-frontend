@@ -72,18 +72,25 @@ function update (e: Event) {
 </template>
 
 <style lang="scss" scoped>
+@import '~/assets/css/colors.scss';
 input.ui-input {
   padding: 4px 16px;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
   width: 100%;
   height: 28px;
   align-self: stretch;
-  border: 1px solid #000;
+  border: 1px solid $primary-100;
   background: #ffffff;
   outline: none;
+  &::placeholder {
+    color: $primary-75;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+  }
 }
 
 ::-webkit-input-placeholder {
