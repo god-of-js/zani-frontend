@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import Api from '~/plugin/api'
-import { CategoryCreate } from '~~/types/CreateCategory'
+import { CategoryCreate } from '~/types'
 
 export const useCategoryStore = defineStore({
   id: 'category',

@@ -7,6 +7,7 @@ const upload = (formData: object) =>
     .post(CLOUDINARY_UPLOAD_URL, formData)
     .then(response => response.data.url)
     .catch((err) => {
+      // eslint-disable-next-line no-console
       console.error(err)
     })
 export { upload }

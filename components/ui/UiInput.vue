@@ -8,10 +8,7 @@ interface Emits {
 const emit = defineEmits<Emits>()
 
 interface Props {
-  autofocus?: boolean;
   disabled?: boolean;
-  error?: string;
-  errors?: string[];
   label?: string;
   maxlength?: number;
   minlength?: number;
@@ -20,7 +17,6 @@ interface Props {
   placeholder?: string;
   required?: boolean;
   type?: 'text' | 'password' | 'email' | 'tel';
-  isDarkBackground?: boolean;
 }
 const props = withDefaults(defineProps<Props>(), {
   autofocus: undefined,
@@ -51,7 +47,6 @@ function update (e: Event) {
     :error="props.error"
     :errors="props.errors"
     :class="{ 'field-with-icon': slots.icon }"
-    :is-dark-background="props.isDarkBackground"
   >
     <div class="input-layout-container">
       <input
@@ -74,14 +69,15 @@ function update (e: Event) {
 <style lang="scss" scoped>
 @import '~/assets/css/colors.scss';
 input.ui-input {
-  padding: 4px 16px;
+  padding: 8px 16px;
   margin-bottom: 12px;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
   width: 100%;
-  height: 28px;
-  align-self: stretch;
+  height: 40px;
+  display: block;
+  box-sizing: border-box;
   border: 1px solid $primary-100;
   background: #ffffff;
   outline: none;

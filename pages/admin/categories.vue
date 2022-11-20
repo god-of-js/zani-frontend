@@ -1,36 +1,13 @@
-<script setup lang="ts">
-import { useCategoryStore } from '~/store/category'
-const categoryStore = useCategoryStore()
-
-const formData = ref({
-  title: '',
-  description: '',
-  image: ''
-})
-function createCategory () {
-  categoryStore.createCategory(formData.value).catch((e) => {
-    return e
-  })
-}
-
-createCategory()
+<script lang="ts" setup>
+const isCreateCategoryVisible = ref(false)
 </script>
 
 <template>
   <div>
-    <h1>Create Category</h1>
-    <form @submit.prevent="createCategory">
-      <UiInput v-model="formData.title" placeholder="title" />
-      <UiButton> Lorem Ipsum </UiButton>
-    </form>
+    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Numquam veritatis
+    assumenda sint vero similique culpa natus quia enim praesentium officiis,
+    ullam, corrupti dolorem reprehenderit omnis sequi id ea doloremque. Eos.
+    <UiButton @click="isCreateCategoryVisible = true" />
+    <CategoryCreateCategory v-model="isCreateCategoryVisible" />
   </div>
 </template>
-
-<style scoped lang="scss">
-h1 {
-  font-size: 16px;
-  font-weight: 900;
-  text-align: center;
-  color: #000;
-}
-</style>
