@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const isCreateCategoryVisible = ref(false)
+const isCreateCollectionVisible = ref(false)
 </script>
 
 <template>
@@ -7,7 +7,9 @@ const isCreateCategoryVisible = ref(false)
     Lorem ipsum dolor sit, amet consectetur adipisicing elit. Numquam veritatis
     assumenda sint vero similique culpa natus quia enim praesentium officiis,
     ullam, corrupti dolorem reprehenderit omnis sequi id ea doloremque. Eos.
-    <UiButton @click="isCreateCategoryVisible = true" />
-    <CategoryCreateCategory v-model="isCreateCategoryVisible" />
+    <UiButton @click="isCreateCollectionVisible = true">
+      Create Collection
+    </UiButton>
+    <CollectionCreateCollection v-model="isCreateCollectionVisible" />
   </div>
 </template>

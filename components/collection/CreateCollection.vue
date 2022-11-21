@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { useCategoryStore } from '~/store/category'
-import { CategoryCreate } from '~/types'
 
 const props = defineProps<{
   modelValue: boolean;
@@ -9,7 +8,7 @@ const props = defineProps<{
 const emit = defineEmits<{(e: 'update:model-value', value: boolean) }>()
 const categoryStore = useCategoryStore()
 
-const formData = ref<CategoryCreate>({
+const formData = ref({
   title: '',
   description: '',
   images: []
