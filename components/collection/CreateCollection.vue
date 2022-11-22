@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { upload } from '~/plugin/cloudinary'
+
 import { useCategoryStore } from '~/store/category'
 
 const props = defineProps<{
@@ -11,7 +13,7 @@ const categoryStore = useCategoryStore()
 const formData = ref({
   title: '',
   description: '',
-  images: []
+  images: [] as File[]
 })
 
 const isModalVisible = computed({
@@ -24,9 +26,22 @@ const isModalVisible = computed({
 })
 
 function createCategory () {
-  categoryStore.createCategory(formData.value).catch((e) => {
-    return e
+  alert('creates category')
+  const images: string[] = []
+  formData.value.images.forEach(async (item) => {
+    const url = await upload(item)
+    images.push(url)
   })
+  console.log(images)
+  categoryStore
+    .createCategory({
+      title: formData.value.title,
+      description: formData.value.description,
+      images
+    })
+    .catch((e) => {
+      return e
+    })
 }
 </script>
 
