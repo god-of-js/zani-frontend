@@ -49,9 +49,7 @@ function getFile (item) {
   return item.name || ''
 }
 function removeFile (index: number) {
-  console.log(index)
-  console.log(files.value[index])
-//   files.value.splice(index, 1)
+  files.value.splice(index, 1)
 }
 </script>
 
