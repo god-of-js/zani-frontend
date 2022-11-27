@@ -5,8 +5,12 @@ const instance = axios.create({
 })
 
 class ApiService {
-  createCategory (data: unknown) {
-    return this.post('/api/v1/categories', data)
+  createCollection (data: unknown) {
+    return this.post('/api/v1/collections', data)
+  }
+
+  getCollections () {
+    return this.get('/api/v1/collections')
   }
 
   private post (url: string, data: unknown): Promise<unknown> {

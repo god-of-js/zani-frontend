@@ -1,1 +1,1 @@
-export { CategoryCreate } from './CreateCategory'
+export { CollectionCreate } from './CreateCollection'
