@@ -1,4 +1,4 @@
-export interface CategoryCreate {
+export interface CollectionCreate {
     title: string,
     description: string,
     images: string[]

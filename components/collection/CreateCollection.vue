@@ -1,14 +1,9 @@
 <script lang="ts" setup>
 import { upload } from '~/plugin/cloudinary'
 
-import { useCategoryStore } from '~/store/category'
+import { useCollectionStore } from '~~/store/collection'
 
-const props = defineProps<{
-  modelValue: boolean;
-}>()
-
-const emit = defineEmits<{(e: 'update:model-value', value: boolean) }>()
-const categoryStore = useCategoryStore()
+const collectionStore = useCollectionStore()
 
 const formData = ref({
   title: '',
@@ -16,25 +11,11 @@ const formData = ref({
   images: [] as File[]
 })
 
-const isModalVisible = computed({
-  get () {
-    return props.modelValue
-  },
-  set (newVal: boolean) {
-    emit('update:model-value', newVal)
-  }
-})
+async function createCollection () {
+  const images = await upload(formData.value.images)
 
-function createCategory () {
-  alert('creates category')
-  const images: string[] = []
-  formData.value.images.forEach(async (item) => {
-    const url = await upload(item)
-    images.push(url)
-  })
-
-  categoryStore
-    .createCategory({
+  collectionStore
+    .createCollection({
       title: formData.value.title,
       description: formData.value.description,
       images
@@ -46,13 +27,13 @@ function createCategory () {
 </script>
 
 <template>
-  <UiModal v-model="isModalVisible">
-    <h1>Create Category</h1>
-    <form @submit.prevent="createCategory">
+  <UiModal>
+    <h1>Create Collection</h1>
+    <form @submit.prevent="createCollection">
       <UiInput v-model="formData.title" placeholder="title" />
       <UiWysiwygEditor v-model="formData.description" />
       <UiImagePicker v-model="formData.images" />
-      <UiButton> Create Category</UiButton>
+      <UiButton> Create Collection</UiButton>
     </form>
   </UiModal>
 </template>

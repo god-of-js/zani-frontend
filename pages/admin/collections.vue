@@ -1,5 +1,11 @@
 <script lang="ts" setup>
+import { useCollectionStore } from '~/store/collection'
+
+const collectionStore = useCollectionStore()
+
 const isCreateCollectionVisible = ref(false)
+
+collectionStore.getCollections()
 </script>
 
 <template>
@@ -10,6 +16,8 @@ const isCreateCollectionVisible = ref(false)
     <UiButton @click="isCreateCollectionVisible = true">
       Create Collection
     </UiButton>
-    <CollectionCreateCollection v-model="isCreateCollectionVisible" />
+    <UiOverlay v-model="isCreateCollectionVisible">
+      <CollectionCreateCollection />
+    </UiOverlay>
   </div>
 </template>
