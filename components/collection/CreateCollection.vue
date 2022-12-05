@@ -32,7 +32,7 @@ function createCategory () {
     const url = await upload(item)
     images.push(url)
   })
-  console.log(images)
+
   categoryStore
     .createCategory({
       title: formData.value.title,

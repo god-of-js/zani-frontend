@@ -1,3 +1,5 @@
+@import './colors.scss';
+
 @font-face {
     font-family: 'runalto';
     src: url(../fonts/runalto.ttf);
@@ -5,4 +7,12 @@
 
 * {
     font-family: 'runalto';
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+a {
+    color: $primary-100;
+    text-decoration: none;
 }
