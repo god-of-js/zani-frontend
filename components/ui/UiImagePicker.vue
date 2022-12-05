@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 const props = defineProps<{
   modelValue: File[];
+  max?: number;
 }>()
 
 const emit = defineEmits<{(e: 'update:model-value', value: unknown[]) }>()
@@ -11,6 +12,9 @@ const files = computed({
     return props.modelValue
   },
   set (newVal: File[]) {
+    if (checkMaximumNumOfFilesExceeded()) {
+      return
+    }
     emit('update:model-value', newVal)
   }
 })
@@ -31,9 +35,16 @@ function preventDefaults (e) {
   e.preventDefault()
 }
 
-function onDrop (e) {
-  files.value.push(...e.dataTransfer.files)
-}
+// To be implemented later on.
+// function onDrop (e) {
+//   console.log(...[...e.dataTransfer.files].slice(0, props.max - 1))
+//   if (props.max) {
+//     files.value.push(...[...e.dataTransfer.files].slice(0, props.max - 1))
+//     return
+//   }
+
+//   files.value.push(...e.dataTransfer.files)
+// }
 
 function handleFileChange () {
   const fileInput = document.getElementById('input') as HTMLInputElement | null
@@ -42,23 +53,36 @@ function handleFileChange () {
 }
 
 function pickImage () {
+  if (checkMaximumNumOfFilesExceeded()) {
+    return
+  }
+
   document.getElementById('input').click()
 }
 
 function getFile (item) {
   return item.name || ''
 }
+
 function removeFile (index: number) {
   files.value.splice(index, 1)
+}
+
+function checkMaximumNumOfFilesExceeded () {
+  if (props.max && props.modelValue.length >= props.max) {
+    // Replace with Alert.
+    alert(' maximum number of files exceeded')
+    return true
+  }
 }
 </script>
 
 <template>
   <UiField>
-    <div class="image-picker" @drop.prevent="onDrop" @click="pickImage">
+    <div class="image-picker" @click="pickImage">
       <slot>
         <div class="">
-          Select or drag and drop images
+          {{ props.max > 1 ? 'Select images' : 'Select image' }}
         </div>
       </slot>
       <input id="input" type="file" @change="handleFileChange">

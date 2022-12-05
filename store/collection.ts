@@ -5,18 +5,38 @@ import { CollectionCreate } from '~/types'
 export const useCollectionStore = defineStore({
   id: 'collection',
   state: () => ({
-    categories: []
+    collections: []
   }),
-  getters: {},
+
+  getters: {
+    collection (state) {
+      return (id: string) => {
+        const collections = state.collections.find(({ _id }) => _id === id)
+
+        if (!collections) {
+          throw new Error('404 Category not found')
+        }
+
+        return collections
+      }
+    }
+  },
+
   actions: {
     createCollection (data: CollectionCreate) {
       return Api.createCollection(data).then((res) => {
-        console.log(res)
+        this.collections.push(res)
       })
     },
 
     getCollections () {
-      return Api.getCollections()
+      return Api.getCollections().then((collections) => {
+        this.collections = collections
+      })
+    },
+
+    deleteCollection (id: string) {
+      return Api.deleteCollection(id)
     }
   }
 })

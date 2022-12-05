@@ -3,22 +3,42 @@ import { upload } from '~/plugin/cloudinary'
 
 import { useCollectionStore } from '~~/store/collection'
 
+const emit = defineEmits<{(e: 'close'): void }>()
 const collectionStore = useCollectionStore()
 
-const formData = ref({
-  title: '',
-  description: '',
-  images: [] as File[]
+const formData = ref(getFormData())
+function getFormData () {
+  return {
+    title: '',
+    description: '',
+    images: [] as File[]
+  }
+}
+
+onMounted(() => {
+  formData.value = getFormData()
 })
 
 async function createCollection () {
+  const isDuplicate = collectionStore.collections.find(
+    ({ title }) => title === formData.value.title
+  )
+
+  if (isDuplicate) {
+    alert('Collection name already exists')
+    return
+  }
+
   const images = await upload(formData.value.images)
 
   collectionStore
     .createCollection({
       title: formData.value.title,
       description: formData.value.description,
-      images
+      image: images[0]
+    })
+    .then(() => {
+      emit('close')
     })
     .catch((e) => {
       return e
@@ -32,7 +52,7 @@ async function createCollection () {
     <form @submit.prevent="createCollection">
       <UiInput v-model="formData.title" placeholder="title" />
       <UiWysiwygEditor v-model="formData.description" />
-      <UiImagePicker v-model="formData.images" />
+      <UiImagePicker v-model="formData.images" :max="1" />
       <UiButton> Create Collection</UiButton>
     </form>
   </UiModal>

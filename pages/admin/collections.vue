@@ -4,20 +4,49 @@ import { useCollectionStore } from '~/store/collection'
 const collectionStore = useCollectionStore()
 
 const isCreateCollectionVisible = ref(false)
+const collections = computed(() => collectionStore.collections)
 
 collectionStore.getCollections()
+
+function deleteCollection (id: string) {
+  collectionStore.deleteCollection(id)
+}
 </script>
 
 <template>
   <div>
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Numquam veritatis
-    assumenda sint vero similique culpa natus quia enim praesentium officiis,
-    ullam, corrupti dolorem reprehenderit omnis sequi id ea doloremque. Eos.
-    <UiButton @click="isCreateCollectionVisible = true">
+    <UiButton
+      class="create-collection"
+      @click="isCreateCollectionVisible = true"
+    >
       Create Collection
     </UiButton>
+    <div class="collections">
+      <UiDetailCard
+        v-for="(collection, index) in collections"
+        :id="collection._id"
+        :key="index"
+        :image="collection.image"
+        :title="collection.title"
+        @delete="deleteCollection"
+      />
+    </div>
+
     <UiOverlay v-model="isCreateCollectionVisible">
-      <CollectionCreateCollection />
+      <CollectionCreateCollection @close="isCreateCollectionVisible = false" />
     </UiOverlay>
   </div>
 </template>
+
+<style lang="scss" scoped>
+.create-collection {
+  width: fit-content;
+  float: right;
+}
+
+.collections {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto;
+  gap: 8px;
+}
+</style>
