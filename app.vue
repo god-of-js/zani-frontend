@@ -7,7 +7,7 @@
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
-    <SignUpToMailingList />
+    <LayoutsSignUpToMailingList />
     <LayoutsAppFooter />
   </div>
 </template>
