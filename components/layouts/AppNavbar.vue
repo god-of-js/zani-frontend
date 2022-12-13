@@ -1,46 +1,56 @@
+<script lang="ts" setup>
+const leftNavLinks = [
+  {
+    name: 'shop',
+    path: '/'
+  },
+  {
+    name: 'bundles',
+    path: '/'
+  },
+  {
+    name: ' brand',
+    path: '/'
+  },
+  {
+    name: ' save items',
+    path: '/'
+  }
+]
+const rightNavLinks = [
+  {
+    name: 'account',
+    path: '/'
+  },
+  {
+    name: 'search',
+    path: '/'
+  },
+  {
+    name: 'cart',
+    path: '/'
+  }
+]
+</script>
+
 <template>
   <nav>
     <div class="navbar-links">
       <ul>
-        <li>
-          <router-link to="/">
-            shop
-          </router-link>
-        </li>
-        <li>
-          <router-link to="/about">
-            bundles
-          </router-link>
-        </li>
-        <li>
-          <router-link to="/projects">
-            brand
-          </router-link>
-        </li>
-        <li>
-          <router-link to="/contact">
-            save items
-          </router-link>
+        <li v-for="(item, index) in leftNavLinks" :key="index">
+          <nuxt-link :to="item.path">
+            {{ item.name }}
+          </nuxt-link>
         </li>
       </ul>
     </div>
     <img src="@/assets/images/brand-logo.svg" alt="brand-logo">
     <div class="navbar-links">
       <ul>
-        <li>
-          <router-link to="/">
-            account
-          </router-link>
-        </li>
-        <li>
-          <router-link to="/about">
-            search
-          </router-link>
-        </li>
-        <li>
-          <router-link to="/projects">
-            cart
-          </router-link>
+        <li v-for="(item, index) in rightNavLinks" :key="index">
+          <nuxt-link :to="item.path">
+            {{ item.name }}
+          </nuxt-link>
         </li>
       </ul>
     </div>
@@ -50,7 +60,6 @@
 <style scoped>
 nav {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   width: 100%;
@@ -70,4 +79,5 @@ nav {
   text-decoration: none;
   color: #01161e;
 }
+
 </style>

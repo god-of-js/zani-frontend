@@ -3,13 +3,11 @@
 
 <template>
   <div>
-    <!-- Add Global navbar component -->
     <LayoutsAppNavbar />
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
-    <LayoutsAppSection />
+    <SignUpToMailingList />
     <LayoutsAppFooter />
-    <!-- Add global footer component -->
   </div>
 </template>
