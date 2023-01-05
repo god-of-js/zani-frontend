@@ -1,7 +1,10 @@
 <script lang="ts" setup>
-const props = defineProps<{
+const props = withDefaults(defineProps<{
   modelValue: File[];
-}>()
+  fileType?: 'image';
+}>(), {
+  fileType: 'image'
+})
 
 const emit = defineEmits<{(e: 'update:model-value', value: unknown[]) }>()
 const events = ['dragenter', 'dragover', 'dragleave', 'drop']
