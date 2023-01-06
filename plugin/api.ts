@@ -1,5 +1,7 @@
 import axios from 'axios'
-
+import { collection, addDoc } from 'firebase/firestore'
+import db from './firebase'
+import { CollectionCreate } from '~/types'
 const instance = axios.create({
   baseURL: 'http://localhost:5000'
 })
@@ -13,8 +15,8 @@ class ApiService {
     return this.get('/api/v1/collections')
   }
 
-  private post (url: string, data: unknown): Promise<unknown> {
-    return instance.post(url, data)
+  private post (collectionName: string, data: Record<string, unknown>): Promise<unknown> {
+    return addDoc(collection(db, collectionName), data)
   }
 
   private get (url: string): Promise<unknown> {

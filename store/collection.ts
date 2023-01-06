@@ -10,9 +10,7 @@ export const useCollectionStore = defineStore({
   getters: {},
   actions: {
     createCollection (data: CollectionCreate) {
-      return Api.createCollection(data).then((res) => {
-        console.log(res)
-      })
+      return Api.createCollection(data)
     },
 
     getCollections () {
