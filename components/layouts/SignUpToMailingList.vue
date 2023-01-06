@@ -1,3 +1,9 @@
+<script setup lang="ts">
+const data = ref({
+  email: '',
+  phoneNumber: ''
+})
+</script>
 <template>
   <section>
     <p>
@@ -5,8 +11,8 @@
       upcoming drops. SMS sign-ups are not compulsory but are recommended
     </p>
     <div class="signup-to-malling">
-      <UiInput placeholder="enter your email" class="enter-email" />
-      <UiInput placeholder="mobile number" class="input-number" />
+      <UiInput v-model="data.email" placeholder="enter your email" class="enter-email" />
+      <UiInput v-model="data.phoneNumber" placeholder="mobile number" class="input-number" />
     </div>
     <UiButton class="subscribe-button">
       subscribe

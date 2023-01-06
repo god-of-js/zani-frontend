@@ -3,6 +3,7 @@ import { upload } from '~/plugin/cloudinary'
 
 import { useCollectionStore } from '~~/store/collection'
 
+const emit = defineEmits<{(e: 'created'): void }>()
 const collectionStore = useCollectionStore()
 
 const formData = ref({
@@ -10,19 +11,22 @@ const formData = ref({
   description: '',
   images: [] as File[]
 })
+const loading = ref(false)
 
 async function createCollection () {
+  loading.value = true
+  // TODO: handle probable errors
   const images = await upload(formData.value.images)
 
   collectionStore
     .createCollection({
       title: formData.value.title,
       description: formData.value.description,
-      images
+      images,
+      isActive: true
     })
-    .catch((e) => {
-      return e
-    })
+    .then(() => emit('created'))
+    .finally(() => (loading.value = false))
 }
 </script>
 
@@ -33,7 +37,9 @@ async function createCollection () {
       <UiInput v-model="formData.title" placeholder="title" />
       <UiWysiwygEditor v-model="formData.description" />
       <UiImagePicker v-model="formData.images" />
-      <UiButton> Create Collection</UiButton>
+      <UiButton :loading="loading">
+        Create Collection
+      </UiButton>
     </form>
   </UiModal>
 </template>

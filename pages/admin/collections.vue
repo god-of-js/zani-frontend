@@ -5,19 +5,37 @@ const collectionStore = useCollectionStore()
 
 const isCreateCollectionVisible = ref(false)
 
-collectionStore.getCollections()
+function loadCollections () {
+  collectionStore.getCollections()
+}
+loadCollections()
 </script>
 
 <template>
   <div>
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Numquam veritatis
-    assumenda sint vero similique culpa natus quia enim praesentium officiis,
-    ullam, corrupti dolorem reprehenderit omnis sequi id ea doloremque. Eos.
-    <UiButton @click="isCreateCollectionVisible = true">
+    <UiButton
+      class="create-btn"
+      fit-content
+      @click="isCreateCollectionVisible = true"
+    >
       Create Collection
     </UiButton>
+
     <UiOverlay v-model="isCreateCollectionVisible">
-      <CollectionCreateCollection />
+      <CollectionCreateCollection
+        @created="
+          () => {
+            isCreateCollectionVisible = false;
+            loadCollections();
+          }
+        "
+      />
     </UiOverlay>
   </div>
 </template>
+
+<style lang="scss" scoped>
+.create-btn {
+  float: right;
+}
+</style>

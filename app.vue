@@ -1,15 +1,22 @@
-<script lang="ts" setup>
-</script>
+<script lang="ts" setup></script>
 
 <template>
   <div>
-    <!-- Add Global navbar component -->
     <LayoutsAppNavbar />
     <NuxtLayout>
-      <NuxtPage />
+      <div class="page-content">
+        <NuxtPage />
+      </div>
     </NuxtLayout>
-    <LayoutsAppSection />
+    <LayoutsSignUpToMailingList />
     <LayoutsAppFooter />
-    <!-- Add global footer component -->
   </div>
 </template>
+
+<style lang="scss" scoped>
+.page-content {
+  width: 85%;
+  margin: auto;
+  padding: 12px 0;
+}
+</style>

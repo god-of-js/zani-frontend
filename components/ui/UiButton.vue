@@ -2,14 +2,16 @@
 interface Props {
   loading?: boolean;
   disabled?: boolean;
+  fitContent?: boolean;
 }
-const props = defineProps<Props>()
-const emit = defineEmits<{(e: 'click'): void }>()
+const prop = defineProps<Props>()
+const emits = defineEmits<{(e: 'click'): void }>()
 </script>
 
 <template>
-  <button :disabled="props.disabled" @click="emit('click')">
-    <slot />
+  <button :disabled="prop.disabled || prop.loading" :class="{'fit-content': prop.fitContent }" @click="emits('click')">
+    <span v-if="loading">Loading...</span>
+    <slot v-else />
   </button>
 </template>
 
@@ -24,6 +26,11 @@ button {
   text-align: center;
   width: 100%;
   height: 40px;
+  padding: 0px 11px;
   cursor: pointer;
+
+  &.fit-content {
+    width: fit-content;
+  }
 }
 </style>
