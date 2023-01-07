@@ -62,10 +62,9 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: 85%;
   height: 93px;
-  margin-inline: auto;
-  max-width: 1440px;
+  margin: auto;
   background: rgba(248, 248, 248, 0.6);
 }
 .navbar-links ul {

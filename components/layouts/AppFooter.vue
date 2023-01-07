@@ -115,6 +115,10 @@ const moreInfoLinks = [
     path: '/'
   }
 ]
+
+const formData = ref({
+  email: ''
+})
 </script>
 <template>
   <footer>
@@ -181,7 +185,7 @@ const moreInfoLinks = [
         re-stocks, sales &amp; more.
       </p>
       <div class="newsletter-signup">
-        <UiInput placeholder="enter your email" class="input-email" />
+        <UiInput v-model="formData.email" placeholder="enter your email" class="input-email" />
         <UiButton class="right-arrow-btn">
           <img src="@/assets/icons/rightarrow.svg" alt="right-arrow">
         </UiButton>
@@ -189,14 +193,14 @@ const moreInfoLinks = [
     </div>
   </footer>
 </template>
+
 <style scoped>
 footer {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
   margin-inline: auto;
-  max-width: 1441px;
-  width: 95%;
+  width: 85%;
   gap: 40px;
   margin-block: 30px;
 }
