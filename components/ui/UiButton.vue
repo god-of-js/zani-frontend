@@ -4,12 +4,12 @@ interface Props {
   disabled?: boolean;
   fitContent?: boolean;
 }
-const prop = defineProps<Props>()
+const props = defineProps<Props>()
 const emits = defineEmits<{(e: 'click'): void }>()
 </script>
 
 <template>
-  <button :disabled="prop.disabled || prop.loading" :class="{'fit-content': prop.fitContent }" @click="emits('click')">
+  <button :disabled="props.disabled || props.loading" :class="{'fit-content': props.fitContent }" @click="emits('click')">
     <span v-if="loading">Loading...</span>
     <slot v-else />
   </button>

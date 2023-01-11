@@ -3,5 +3,5 @@ export interface Collection {
     description: string,
     images: string[],
     id: string,
-    isActive: boolean
+    isActive: boolean,
 }

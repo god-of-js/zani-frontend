@@ -62,15 +62,14 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 85%;
+  padding: 0 5%;
+  width: 100%;
   height: 93px;
-  margin: auto;
   background: rgba(248, 248, 248, 0.6);
 }
 .navbar-links ul {
   list-style: none;
   display: flex;
-  padding: 30px;
   gap: 15px;
 }
 

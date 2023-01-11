@@ -198,11 +198,8 @@ const formData = ref({
 footer {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
-  margin-inline: auto;
-  width: 85%;
+  padding: 0 5%;
   gap: 40px;
-  margin-block: 30px;
 }
 h2 {
   padding-bottom: 20px;
