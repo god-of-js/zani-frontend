@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { upload } from '~/plugin/cloudinary'
 
-import { useCollectionStore } from '~~/store/collection'
+import { useCollectionStore } from '~/store/collection'
 
 const emit = defineEmits<{(e: 'created'): void }>()
 const collectionStore = useCollectionStore()
